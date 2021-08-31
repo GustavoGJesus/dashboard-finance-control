@@ -21,7 +21,6 @@ export const Container = styled.div`
             background: var(--shape);
             font-weight: 400;
             color: var(--text-body);
-            
 
             &:first-child{
                 color: var(--text-title);
