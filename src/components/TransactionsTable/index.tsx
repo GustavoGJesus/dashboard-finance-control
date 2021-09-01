@@ -19,7 +19,7 @@ export function TransactionsTable(){
                         <th>Date</th>
                     </tr>
                 </thead>
-
+                
                 <tbody>
                     <tr>
                         <td>Website Development</td>
