@@ -7,9 +7,9 @@ import { Container, Content } from './styles';
 //Modal
 interface HeaderProps{
     onOPenNewTransactionModal: () => void;
+    
 }
 export function Header({onOPenNewTransactionModal}: HeaderProps){
-    
     
     return(
         <Container>
