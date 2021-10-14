@@ -9,9 +9,22 @@ import { TransactionsContext } from "../../TransactionsContext";
 
 export function Summary(){
     const { transactions } = useContext(TransactionsContext);
-    
-    console.log(transactions)
 
+   const summary = transactions.reduce((acc, transaction) =>{
+        if (transaction.type == 'deposit'){
+            acc.deposit += transaction.amount;
+            acc.total += transaction.amount;
+        } else{
+           acc.withdraws += transaction.amount;
+           acc.total -= transaction.amount;
+        }
+
+        return acc;
+   } , {
+        deposit: 0,
+        withdraws:0,
+        total: 0,
+   })
     return (
         <Container> 
             <div>
@@ -20,7 +33,10 @@ export function Summary(){
                     <img src={entradasImg} alt="income" />
                 </header> 
                     <strong>
-                        $1000,00
+                        {new Intl.NumberFormat('en',{
+                            style:'currency',
+                            currency: 'USD'
+                        }).format(summary.deposit)}
                     </strong>
                 </div>
             <div>
@@ -29,7 +45,10 @@ export function Summary(){
                     <img src={saidasImg} alt="Outcome"/>
                     </header>
                     <strong>
-                        - $500,00
+                        {new Intl.NumberFormat('en',{ //Formatação dos números
+                            style:'currency',
+                            currency: 'USD'
+                        }).format(summary.withdraws)}
                     </strong>
                
             </div>
@@ -39,9 +58,11 @@ export function Summary(){
                     <img src={totalImg} alt="total" />
                 </header>
                     <strong>
-                        $7000,00
+                        {new Intl.NumberFormat('en',{
+                            style:'currency',
+                            currency: 'USD'
+                        }).format(summary.total)}
                     </strong>
-            
             </div>
         </Container>
     )
